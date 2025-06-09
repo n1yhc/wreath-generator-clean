@@ -17,7 +17,7 @@ html, body {
     position: absolute;
     top: 10px;
     right: 20px;
-    font-family: 'Noto Sans KR', sans-serif;
+    z-index: 100;
   }
   
   nav ul {
@@ -28,6 +28,7 @@ html, body {
     gap: 6px;
     align-items: flex-end;
     text-align: right;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   
   nav a {
@@ -35,7 +36,13 @@ html, body {
     color: #234C38;
     letter-spacing:-0.4px;
     font-weight: normal;
-  }
+    text-shadow:
+    0 0 2px white,
+    0 0 4px white,
+    0 0 6px white,
+    0 0 8px white,
+    0 0 10px white;
+}
 
   nav img {
     display: block;
