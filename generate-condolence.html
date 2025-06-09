@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>근조 화환 생성기</title>
+  <link rel="stylesheet" href="generate-condolence.css">
+</head>
+<body>
+
+  <!-- 네비게이션 -->
+  <nav>
+    <ul>
+      <li><a href="about.html">about project</a></li>
+      <li><a href="index.html">look around wreaths</a></li>
+      <li><a href="generate-congrats.html">generate wreath</a></li>
+
+    </ul>
+  </nav>
+
+  <!-- 화환 생성기 영역 -->
+  <div id="wreath-generator">
+
+    <!-- 교체 버튼 -->
+    <div id="wreath-action-button">
+      <a href="generate-congrats.html">
+        <img src="asset/change2.png" alt="generate congrats wreath">
+      </a>
+    </div>
+
+    <!-- 화환 프레임 이미지 -->
+    <div id="wreath-container">
+      <canvas id="custom-wreath-canvas"></canvas>
+    </div>
+
+    <!-- 입력 필드 -->
+    <div id="input-form">
+      <input type="text" id="ribbon-left" placeholder="좌측 리본 텍스트">
+      <input type="text" id="ribbon-right" placeholder="우측 리본 텍스트">
+      <input type="file" id="image-upload" accept="image/*"hidden>
+      <label for="image-upload" class="custom-file-button">리본 사진 업로드</label>
+      <button id="generate-button">화환 보내기</button>
+      <button id="download-button">화환 저장하기</button>
+    </div>
+
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="generate-condolence.js"></script>
+
+  
+</body>
+</html>

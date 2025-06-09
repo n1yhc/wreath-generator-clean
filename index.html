@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>화환 둘러보기</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- 네비게이션 -->
+  <nav>
+    <ul>
+      <li><a href="about.html">about project</a></li>
+      <li><a href="index.html">look around wreaths</a></li>
+      <li><a href="generate-congrats.html">generate wreath</a></li>
+    </ul>
+  </nav>
+
+  <!-- 갤러리 이미지 보여줄 영역 -->
+  <div id="wreath-gallery">불러오는 중...</div>
+
+  <!-- Supabase 모듈 불러오기 + Signed URL 방식 -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const supabase = createClient(
+      'https://hecdtiykzzucvrnvomij.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhlY2R0aXlrenp1Y3ZybnZvbWlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzNzAyMDksImV4cCI6MjA2NDk0NjIwOX0.5GzBjJ7gbEMR96wqVRIN3n81FSy9mdbdQetJrsx2xIQ'
+    );
+
+    async function loadImages() {
+      const { data, error } = await supabase
+        .storage
+        .from('wreath')
+        .list('', { limit: 100, sortBy: { column: 'created_at', order: 'desc' } });
+
+      const container = document.getElementById('wreath-gallery');
+      container.innerHTML = ''; // '불러오는 중...' 제거
+
+      if (error) {
+        container.innerText = '이미지를 불러오지 못했습니다.';
+        console.error('❌ 이미지 목록 불러오기 실패:', error);
+        return;
+      }
+
+      for (const file of data) {
+        const { data: signedData, error: urlError } = await supabase
+          .storage
+          .from('wreath')
+          .createSignedUrl(file.name, 60 * 60 * 24); // 24시간 유효
+
+        if (urlError || !signedData) {
+          console.error('❌ Signed URL 생성 실패:', urlError);
+          continue;
+        }
+
+        const img = document.createElement('img');
+        img.src = signedData.signedUrl;
+        img.alt = file.name;
+        img.style.width = '200px';
+        img.style.margin = '10px';
+        img.style.borderRadius = '12px';
+
+        img.onerror = () => {
+          console.error('이미지 로딩 실패:', img.src);
+        };
+
+        container.appendChild(img);
+      }
+    }
+
+    loadImages();
+  </script>
+  <script>
+    // 모바일에서 이미지 터치 시 확대 효과
+    document.addEventListener('DOMContentLoaded', () => {
+      const gallery = document.getElementById('wreath-gallery');
+
+      const observer = new MutationObserver(() => {
+        const images = gallery.querySelectorAll('img');
+        images.forEach((img) => {
+          img.addEventListener('touchstart', () => {
+            img.style.transform = 'scale(1.05)';
+            img.style.transition = 'transform 0.2s ease';
+            setTimeout(() => {
+              img.style.transform = 'scale(1)';
+            }, 300);
+          });
+        });
+      });
+
+      observer.observe(gallery, { childList: true });
+    });
+  </script>
+</body>
+</html>

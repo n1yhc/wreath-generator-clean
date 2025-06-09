@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'ChosunGs';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  /* 네비게이션 */
+  nav {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    text-align: right;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #234C38;
+    letter-spacing:-0.4px;
+    font-weight: normal;
+  }
+
+  nav img {
+    display: block;
+    width: 20px; /* 적당히 조절해 */
+    height: auto;
+  }
+  
+  /* 메인 화환 생성기 컨테이너 */
+  #wreath-generator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  /* 프레임 위쪽에 붙일 근조화환 버튼 */
+#wreath-action-button {
+    margin-bottom: 20px;
+  }
+  
+  #wreath-action-button img {
+    width: 90px;
+    display: block;
+    margin: 0 auto;
+  }
+  /* 화환 이미지 & 캔버스 */
+  #wreath-container {
+    position: relative;
+    width: fit-content;
+    margin-bottom: 20px;
+    display: flex;            
+  justify-content: center;   
+  }
+  
+  canvas {
+  width: 50%;  
+  height: auto;
+  display: block;
+}
+  
+  /* 입력폼 */
+  #input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .custom-file-button {
+    display: inline-block;
+    width: 210px;
+    height: 17x;
+    padding: 10px 20px;
+    background-color: #eee;
+    color: #333;
+    font-size: 13px;
+    font-weight: normal;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .custom-file-button:hover {
+    background-color: #ddd;
+  }
+
+  
+  /* 버튼 기본 */
+  button {
+    padding: 10px 20px;
+    width: 250px;
+    font-weight: normal;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #234C38;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #397056;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+    width: 230px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="file"] {
+    padding: 6px;
+  }
+  

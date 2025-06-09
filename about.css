@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  /* 네비게이션 */
+  nav {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    text-align: right;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #234C38;
+    letter-spacing:-0.4px;
+    font-weight: normal;
+  }
+
+  .content {
+    word-break: keep-all;
+overflow-wrap: break-word;
+
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 120px;
+    padding: 80px 20px;
+    text-align: left; 
+    color: #234C38;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.8;
+    font-size: 10px;
+  }
+  
+  /* 제목 스타일 */
+h1 {
+    font-size: 16px;       /* 글자 크기 */
+    font-weight: 700;      /* 글자 두께: 400(normal), 700(bold) 등 */
+    letter-spacing: -0.5px; /* 자간 */
+    margin-bottom: 24px;
+  }
+  
+  /* 본문 스타일 */
+  p {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 1.75;      /* 줄 간격 */
+    margin-bottom: 20px;
+  }
+  
+  .draft {
+    font-size: 13px;
+    color: gray;               /* 색 바꾸기 */
+  }
+  

@@ -1,0 +1,60 @@
+  /* 네비게이션 */
+  nav {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 100;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    text-align: right;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #234C38;
+    letter-spacing:-0.4px;
+    font-weight: normal;
+    text-shadow:
+    0 0 2px white,
+    0 0 4px white,
+    0 0 6px white,
+    0 0 8px white,
+    0 0 10px white;
+}
+
+  /* 갤러리 전체 */
+#wreath-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    justify-items: center;
+    align-items: start;
+    gap: 0px 10px; /* 행간 좁게, 열 간격도 살짝 줄임 */
+    padding: 0px 20px;
+    max-width: 1900px;
+    margin: 0 auto;
+  }
+  
+  /* 이미지 공통 */
+  #wreath-gallery img {
+    width: 110%;
+    max-width: 200px;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+    display: block;
+    margin-bottom: 0;   /* 불필요한 마진 제거 */
+    margin: 0px 0 0 0;
+    vertical-align: top; /* inline 요소 간 줄 간격 방지 */
+  }
+
+  #wreath-gallery img:hover {
+    transform: scale(1.3); /* 6% 정도 커지게 */
+    z-index: 1; /* 다른 요소 위에 올라오게 */
+  }
+  
