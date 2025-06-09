@@ -132,36 +132,3 @@ html, body {
     padding: 6px;
   }
   
-  @media (max-width: 600px) {
-    /* 네비게이션 텍스트 조금 키우기 */
-    nav a {
-      font-size: 15px;
-    }
-  
-    /* 근조화환 버튼 이미지 크기 키우기 */
-    #wreath-action-button img {
-      width: 110px;
-    }
-  
-    /* 캔버스 크게 보이게 */
-    canvas {
-      width: 80%;
-    }
-  
-    /* 입력폼 요소들 키우기 */
-    input[type="text"] {
-      font-size: 16px;
-      width: 260px;
-    }
-  
-    .custom-file-button {
-      font-size: 14px;
-      width: 260px;
-    }
-  
-    button {
-      font-size: 16px;
-      width: 260px;
-      padding: 12px 24px;
-    }
-  }
