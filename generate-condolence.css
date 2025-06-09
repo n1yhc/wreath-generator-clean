@@ -11,37 +11,35 @@ html, body {
     padding: 0;
   }
   
-  
-  /* 네비게이션 */
-  nav {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    z-index: 100;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-end;
-    text-align: right;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #234C38;
-    letter-spacing:-0.4px;
-    font-weight: normal;
-    text-shadow:
-    0 0 2px white,
-    0 0 4px white,
-    0 0 6px white,
-    0 0 8px white,
-    0 0 10px white;
+   /* 네비게이션 */
+ nav {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  text-align: right;
+}
+
+nav a {
+  text-decoration: none;
+  color: #234C38;
+  letter-spacing:-0.4px;
+  font-weight: normal;
+  text-shadow:
+  0 0 2px white,
+  0 0 4px white,
+  0 0 6px white,
+  0 0 8px white,
+  0 0 10px white;
 }
 
   nav img {
