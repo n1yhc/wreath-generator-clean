@@ -34,7 +34,7 @@
         .from("wreaths")
         .select("*")
         .order("created_at", { ascending: false }) // 🔥 최신순 정렬
-        .limit(30); // 🔥 30개만 보여주기
+        .limit(100); // 🔥 30개만 보여주기
 
       const container = document.getElementById('wreath-gallery');
       container.innerHTML = '';
