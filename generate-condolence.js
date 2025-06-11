@@ -105,11 +105,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function downloadImage() {
+  async function downloadImage() {
     const link = document.createElement('a');
     link.download = 'wreath.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
+    
+ // 🆕 다운로드 기록 저장
+ await supabaseClient
+ .from('wreath_download_log')
+ .insert({})
+ .then(({ error }) => {
+   if (error) {
+     console.error('다운로드 기록 실패:', error);
+   } else {
+     console.log('다운로드 기록 완료!');
+   }
+ });
+    
   }
 
   async function uploadToSupabase() {
@@ -144,6 +157,19 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(insertResult.error);
       return;
     }
+
+    // 🆕 wreath_log 테이블에 insert (누적 카운트용)
+await supabaseClient
+.from('wreath_log')
+.insert({})
+.then(({ error }) => {
+  if (error) {
+    console.error('화환 카운트 insert 실패:', error);
+  } else {
+    console.log('화환 카운트 기록 완료!');
+  }
+});
+
 
     // 3. 오래된 항목 1개 삭제
     const { data: extra, error: extraError } = await supabaseClient
