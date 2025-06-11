@@ -129,10 +129,49 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // 🆕 DB에 파일 메타데이터 저장
+    const insertResult = await supabaseClient
+      .from("wreaths")
+      .insert([
+        {
+          filename: fileName,
+          created_at: new Date().toISOString(),
+        },
+      ]);
+
+    if (insertResult.error) {
+      alert('⚠️ DB 저장 실패!');
+      console.error(insertResult.error);
+      return;
+    }
+
+    // 🆕 오래된 항목 자동 삭제 (101개째부터)
+    const { data: extra, error: extraError } = await supabaseClient
+      .from("wreaths")
+      .select("*")
+      .order("created_at", { ascending: true })
+      .range(100, 100);
+
+    if (extra && extra.length > 0) {
+      const oldItem = extra[0];
+
+      // 스토리지 삭제
+      await supabaseClient
+        .storage
+        .from(bucketName)
+        .remove([oldItem.filename]);
+
+      // DB 삭제
+      await supabaseClient
+        .from("wreaths")
+        .delete()
+        .eq("id", oldItem.id);
+    }
+
     const { data: urlData } = supabaseClient.storage
       .from(bucketName)
       .getPublicUrl(fileName);
 
-    alert('✅ 화환이 업로드되었습니다!\n');
+    alert('화환이 업로드되었습니다! look around wreaths 페이지에서 최신 100개 화환을 둘러보세요.\n');
   }
 });
