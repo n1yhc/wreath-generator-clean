@@ -20,7 +20,7 @@
   <!-- 갤러리 이미지 보여줄 영역 -->
   <div id="wreath-gallery">불러오는 중...</div>
 
-  <!-- Supabase 모듈 불러오기 + Signed URL 방식 -->
+  <!-- Supabase 연결 및 이미지 불러오기 -->
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
@@ -30,25 +30,26 @@
     );
 
     async function loadImages() {
-      const { data, error } = await supabase
-        .storage
-        .from('wreath')
-        .list('', { limit: 100, sortBy: { column: 'created_at', order: 'desc' } });
+      const { data: entries, error } = await supabase
+        .from("wreaths")
+        .select("*")
+        .order("created_at", { ascending: false }) // 🔥 최신순 정렬
+        .limit(30); // 🔥 30개만 보여주기
 
       const container = document.getElementById('wreath-gallery');
-      container.innerHTML = ''; // '불러오는 중...' 제거
+      container.innerHTML = '';
 
       if (error) {
         container.innerText = '이미지를 불러오지 못했습니다.';
-        console.error('❌ 이미지 목록 불러오기 실패:', error);
+        console.error('❌ DB에서 화환 목록 불러오기 실패:', error);
         return;
       }
 
-      for (const file of data) {
+      for (const entry of entries) {
         const { data: signedData, error: urlError } = await supabase
           .storage
-          .from('wreath')
-          .createSignedUrl(file.name, 60 * 60 * 24); // 24시간 유효
+          .from("wreath")
+          .createSignedUrl(entry.filename, 60 * 60 * 24); // 24시간 유효
 
         if (urlError || !signedData) {
           console.error('❌ Signed URL 생성 실패:', urlError);
@@ -57,7 +58,7 @@
 
         const img = document.createElement('img');
         img.src = signedData.signedUrl;
-        img.alt = file.name;
+        img.alt = entry.filename;
         img.style.width = '200px';
         img.style.margin = '10px';
         img.style.borderRadius = '12px';
@@ -72,8 +73,9 @@
 
     loadImages();
   </script>
+
+  <!-- 모바일 터치 확대 효과 -->
   <script>
-    // 모바일에서 이미지 터치 시 확대 효과
     document.addEventListener('DOMContentLoaded', () => {
       const gallery = document.getElementById('wreath-gallery');
 
