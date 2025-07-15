@@ -5,19 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>화환 둘러보기</title>
   <style>
-    body {
+    @font-face {
+      font-family: 'ChosunGs';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html, body {
+      height: 100%;
       margin: 0;
-      background: #ffffff;
+      padding: 0;
       font-family: 'Pretendard', sans-serif;
+      background: #ffffff;
       overflow: hidden;
     }
 
-    /* ✅ 내비게이션 스타일 */
     nav {
       position: absolute;
       top: 10px;
       right: 20px;
-      z-index: 10;
+      z-index: 100;
     }
 
     nav ul {
@@ -35,15 +43,30 @@
       color: #234C38;
       letter-spacing: -0.4px;
       font-weight: normal;
+      text-shadow:
+        0 0 2px white,
+        0 0 4px white,
+        0 0 6px white,
+        0 0 8px white,
+        0 0 10px white;
     }
 
-    /* ✅ 이미지 애니메이션 스타일 */
+    .gallery-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+    }
+
     .gallery-row {
       position: absolute;
       width: 200%;
       display: flex;
       gap: 0;
       animation: scroll 30s linear infinite;
+      z-index: 1;
     }
 
     .top-gallery {
@@ -55,36 +78,50 @@
       animation-direction: reverse;
     }
 
-    .gallery-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-    }
-
     .gallery-image {
-      height: 80px;
+      height: 10vw;
+      max-height: 80px;
       object-fit: contain;
     }
 
     .text-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 15px;
-      text-align: center;
-      color: #234C38;
-      white-space: pre-line;
-      line-height: 1;
-      z-index: 2;
-    }
+  position: absolute;
+  top: 42%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 90vw; /* or 100vw */
+  max-width: 1000px; /* PC에서 너무 길어지는 거 방지 */
+  font-size: 15px;
+  text-align: center;
+  color: #234C38;
+  white-space: pre-line;
+  line-height: 1.4;
+  z-index: 10;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
 
     @keyframes scroll {
       0% {
-        transform: translateX(-50%);
+        transform: translateX(0%);
       }
       100% {
-        transform: translateX(0%);
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-image {
+        height: 16vw;
+      }
+      .text-overlay {
+        font-size: 13px;
+        line-height: 1;
+      }
+      nav a {
+        font-size: 13px;
       }
     }
   </style>
@@ -100,8 +137,10 @@
   </nav>
 
   <div class="gallery-container">
-    <!-- 위쪽 움직이는 이미지 -->
+    <!-- 위쪽 움직이는 이미지 (앞쪽에 복제 추가) -->
     <div class="gallery-row top-gallery">
+      <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
+      <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
       <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
       <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
       <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
@@ -114,14 +153,16 @@
       <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
       <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
       <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
+      <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
+      <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
     </div>
 
     <!-- 중앙 텍스트 -->
     <div class="text-overlay">
-      광장 운영이 종료되었습니다.<br>
-       <br>
+      광장 운영이 종료되었습니다.<br><br>
       2025년 6월 8일부터 2025년 7월 13일까지<br>
-      총 34,183개의 화환이 저장되었고, 9,673개의 화환이 업로드되었습니다.
+      총 34,183개의 화환이 저장되었고,<br>
+      9,673개의 화환이 업로드되었습니다.
     </div>
   </div>
 </body>
