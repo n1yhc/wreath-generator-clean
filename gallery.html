@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>화환 둘러보기</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: 'Pretendard', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ✅ 내비게이션 스타일 */
+    nav {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #234C38;
+      letter-spacing: -0.4px;
+      font-weight: normal;
+    }
+
+    /* ✅ 이미지 애니메이션 스타일 */
+    .gallery-row {
+      position: absolute;
+      width: 200%;
+      display: flex;
+      gap: 0;
+      animation: scroll 30s linear infinite;
+    }
+
+    .top-gallery {
+      top: 15px;
+    }
+
+    .bottom-gallery {
+      bottom: 15px;
+      animation-direction: reverse;
+    }
+
+    .gallery-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .gallery-image {
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .text-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 15px;
+      text-align: center;
+      color: #234C38;
+      white-space: pre-line;
+      line-height: 1;
+      z-index: 2;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ 내비게이션 -->
+  <nav>
+    <ul>
+      <li><a href="about.html">about project</a></li>
+      <li><a href="gallery.html">look around wreaths</a></li>
+      <li><a href="generate-congrats.html">generate wreath</a></li>
+    </ul>
+  </nav>
+
+  <div class="gallery-container">
+    <!-- 위쪽 움직이는 이미지 -->
+    <div class="gallery-row top-gallery">
+      <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
+      <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
+      <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
+      <img src="./asset/gallery1.png" class="gallery-image" alt="gallery1" />
+    </div>
+
+    <!-- 아래쪽 움직이는 이미지 -->
+    <div class="gallery-row bottom-gallery">
+      <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
+      <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
+      <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
+      <img src="./asset/gallery2.png" class="gallery-image" alt="gallery2" />
+    </div>
+
+    <!-- 중앙 텍스트 -->
+    <div class="text-overlay">
+      광장 운영이 종료되었습니다.<br>
+       <br>
+      2025년 6월 8일부터 2025년 7월 13일까지<br>
+      총 34,183개의 화환이 저장되었고, 9,673개의 화환이 업로드되었습니다.
+    </div>
+  </div>
+</body>
+</html>
